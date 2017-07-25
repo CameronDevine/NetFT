@@ -11,3 +11,11 @@ Either copy the `NetFT.py` file into your project directory or add it to your Py
 ## Use
 
 A simple example of how to use the API is in the `example.py` file.
+
+## Compatability
+
+This library is compatabile with the following operating systems:
+
+* Windows
+* Linux
+* Mac (Untested)
