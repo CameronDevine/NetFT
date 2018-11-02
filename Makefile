@@ -1,6 +1,4 @@
-.PHONY: all build upload clean doc
-
-all: build upload clean
+.PHONY: build upload clean doc
 
 build:
 	python setup.py sdist bdist_wheel --universal

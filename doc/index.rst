@@ -5,7 +5,7 @@
 .. mdinclude:: ../README.md
 
 Documentation
-=============
+-------------
 
 .. automodule:: NetFT
 	:members:

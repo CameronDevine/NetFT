@@ -39,9 +39,9 @@ copyright = u'2018, Cameron Devine'
 author = u'Cameron Devine'
 
 # The short X.Y version
-version = u''
+#version = u''
 # The full version, including alpha/beta/rc tags
-release = u'0.6'
+#release = u'0.6'
 
 
 # -- General configuration ---------------------------------------------------

@@ -1,6 +1,7 @@
 # NetFT
 
 [![Documentation Status](https://readthedocs.org/projects/netft/badge/?version=latest)](https://netft.readthedocs.io/en/latest/?badge=latest)
+[![PyPI](https://img.shields.io/pypi/v/NetFT.svg)](https://pypi.org/project/NetFT/)
 
 ## Introduction
 
