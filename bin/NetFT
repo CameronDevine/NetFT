@@ -1,0 +1,73 @@
+#!/usr/bin/env python
+
+from __future__ import print_function
+import NetFT
+import argparse
+
+parser = argparse.ArgumentParser(description = "Read data from ATI NetFT sensors.")
+parser.add_argument('ip',
+	metavar = 'ip address',
+	type = str,
+	help = "The IP address of the sensor")
+parser.add_argument('-t', '--torque',
+	dest = 'torque',
+	action = 'store_true',
+	help = "Show torque values")
+parser.add_argument('-f', '--force',
+	dest = 'force',
+	action = 'store_true',
+	help = "Show force values")
+parser.add_argument('-s', '--samples',
+	dest = 'samples',
+	type = int,
+	default = False,
+	metavar = 'N',
+	help = "The number of samples to print")
+parser.add_argument('-m', '--mean',
+	dest = 'mean',
+	type = int,
+	nargs = '?',
+	const = 10,
+	default = False,
+	metavar = 'N',
+	help = "Tare the sensor with N datapoints before showing data (default 10)")
+parser.add_argument('-c', '--continuous',
+	dest = 'continuous',
+	action = 'store_true',
+	help = "Print data continuously")
+args = parser.parse_args()
+
+args.force, args.torque = \
+args.force or not args.force and not args.torque, \
+args.torque or not args.force and not args.torque
+
+sensor = NetFT.Sensor(args.ip)
+
+if args.mean:
+	sensor.tare(args.mean)
+
+if args.force and args.torque:
+	data = sensor.measurement
+	get = sensor.getMeasurement
+elif args.force:
+	data = sensor.force
+	get = sensor.getForce
+else:
+	data = sensor.torque
+	get = sensor.getTorque
+
+if args.samples:
+	sensor.getMeasurements(args.samples)
+	for i in range(args.samples):
+		sensor.recieve()
+		print(data())
+elif args.continuous:
+	sensor.startStreaming(False)
+	try:
+		while True:
+			sensor.receive()
+			print(data())
+	except KeyboardInterrupt:
+		print('Exiting')
+else:
+	print(get())

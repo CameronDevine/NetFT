@@ -2,20 +2,12 @@
 
 ## Introduction
 
-This is a Python API for UDP communication with ATI Net-F/T boxes.
+This is a Python API for RDT communication with ATI Force/Torque sensors using Net-F/T interface boxes. This library supports requesting single measurements, streaming measurements, and taring the sensor.
 
 ## Instalation
 
-Either copy the `NetFT.py` file into your project directory or add it to your Python path.
+This package can be installed using `pip install NetFT`. The current development verion can be installed by cloning the git repository and running `python setup.py install`.
 
 ## Use
 
-A simple example of how to use the API is in the `example.py` file.
-
-## Compatability
-
-This library is compatabile with the following operating systems:
-
-* Windows
-* Linux
-* Mac (Untested)
+A command line interface is included with the package. It can be run by simply typing `NetFT` in a terminal. The documentation for this can be viewed by running `NetFT --help`.
