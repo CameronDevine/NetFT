@@ -1,4 +1,6 @@
-# Net-FT-py
+# NetFT
+
+[![Documentation Status](https://readthedocs.org/projects/netft/badge/?version=latest)](https://netft.readthedocs.io/en/latest/?badge=latest)
 
 ## Introduction
 
