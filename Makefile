@@ -1,4 +1,4 @@
-.PHONY: all build upload clean
+.PHONY: all build upload clean doc
 
 all: build upload clean
 
@@ -9,4 +9,7 @@ upload:
 	twine upload dist/*
 
 clean:
-	rm -rf *.egg-info build dist
+	rm -rf *.egg-info build dist doc/build
+
+doc:
+	sphinx-build doc doc/build

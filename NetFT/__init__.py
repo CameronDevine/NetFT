@@ -95,7 +95,7 @@ class Sensor:
 		The sensor is currently streaming, started by running `startStreaming`,
 		then this function will simply return the most recently returned value.
 
-		Retruns:
+		Returns:
 			list of float: The force and torque values recieved. The first three
 				values are the forces recorded, and the last three are the measured
 				torques.
@@ -119,7 +119,7 @@ class Sensor:
 
 		Request a single measurement from the sensor and return it.
 
-		Retruns:
+		Returns:
 			list of float: The force values recieved.
 		'''
 		return self.getMeasurement()[:3]
@@ -127,7 +127,7 @@ class Sensor:
 	def force(self):
 		'''Get the most recent force measurement
 
-		Retruns:
+		Returns:
 			list of float: The force values recieved.
 		'''
 		return self.measurement()[:3]
@@ -137,7 +137,7 @@ class Sensor:
 
 		Request a single measurement from the sensor and return it.
 
-		Retruns:
+		Returns:
 			list of float: The torque values recieved.
 		'''
 		return self.getMeasurement()[3:]
@@ -145,7 +145,7 @@ class Sensor:
 	def torque(self):
 		'''Get the most recent torque measurement
 
-		Retruns:
+		Returns:
 			list of float: The torque values recieved.
 		'''
 		return self.measurement()[3:]
@@ -161,7 +161,7 @@ class Sensor:
 
 		Args:
 			handler (bool, optional): If True start the handler which saves data to be
-				used with meansurement`, `force`, and `torque`. If False the
+				used with `measurement`, `force`, and `torque`. If False the
 				measurements must be recieved manually. Defaults to True.
 		'''
 		self.getMeasurements(0)
