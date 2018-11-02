@@ -6,6 +6,15 @@
 # full list see the documentation:
 # http://www.sphinx-doc.org/en/master/config
 
+# -- Check if m2r is installed, if not install it ----------------------------
+
+try:
+	import m2r
+	del m2r
+except ImportError:
+	import pip
+	pip.main(['install', 'm2r'])
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
