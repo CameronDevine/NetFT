@@ -7,9 +7,9 @@
 
 This is a Python API for RDT communication with ATI Force/Torque sensors using Net-F/T interface boxes. This library supports requesting single measurements, streaming measurements, and taring the sensor.
 
-## Instalation
+## Installation
 
-This package can be installed using `pip install NetFT`. The current development verion can be installed by cloning the git repository and running `python setup.py install`.
+This package can be installed using `pip install NetFT`. The current development version can be installed by cloning the git repository and running `python setup.py install`.
 
 ## Use
 

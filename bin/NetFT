@@ -59,7 +59,7 @@ else:
 if args.samples:
 	sensor.getMeasurements(args.samples)
 	for i in range(args.samples):
-		sensor.recieve()
+		sensor.receive()
 		print(data())
 elif args.continuous:
 	sensor.startStreaming(False)

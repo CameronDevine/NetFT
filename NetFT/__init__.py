@@ -13,7 +13,7 @@ class Sensor:
 	def __init__(self, ip):
 		'''Start the sensor interface
 
-		This function intializes the class and opens the socket for the
+		This function initializes the class and opens the socket for the
 		sensor.
 
 		Args:
@@ -39,14 +39,14 @@ class Sensor:
 		message = struct.pack('!HHI', header, command, count)
 		self.sock.sendto(message, (self.ip, self.port))
 
-	def recieve(self):
-		'''Recieves and unpacks a response from the Net F/T box.
+	def receive(self):
+		'''Receives and unpacks a response from the Net F/T box.
 
-		This function recieves and unpacks an RDT response from the Net F/T
+		This function receives and unpacks an RDT response from the Net F/T
 		box and saves it to the data class attribute.
 
 		Returns:
-			list of float: The force and torque values recieved. The first three
+			list of float: The force and torque values received. The first three
 				values are the forces recorded, and the last three are the measured
 				torques.
 		'''
@@ -73,20 +73,20 @@ class Sensor:
 		self.getMeasurements(n = n)
 		mean = [0] * 6
 		for i in range(n):
-			self.recieve()
+			self.receive()
 			for i in range(6):
 				mean[i] += self.measurement()[i] / float(n)
 		self.mean = mean
 		return mean
 
 	def zero(self):
-		'''Remove the mean found with `tare` to start recieving raw sensor values.'''
+		'''Remove the mean found with `tare` to start receiving raw sensor values.'''
 		self.mean = [0] * 6
 
-	def recieveHandler(self):
-		'''A handler to recieve and store data.'''
+	def receiveHandler(self):
+		'''A handler to receive and store data.'''
 		while self.stream:
-			self.recieve()
+			self.receive()
 
 	def getMeasurement(self):
 		'''Get a single measurement from the sensor
@@ -96,19 +96,19 @@ class Sensor:
 		then this function will simply return the most recently returned value.
 
 		Returns:
-			list of float: The force and torque values recieved. The first three
+			list of float: The force and torque values received. The first three
 				values are the forces recorded, and the last three are the measured
 				torques.
 		'''
 		self.getMeasurements(1)
-		self.recieve()
+		self.receive()
 		return self.data
 
 	def measurement(self):
 		'''Get the most recent force/torque measurement
 
 		Returns:
-			list of float: The force and torque values recieved. The first three
+			list of float: The force and torque values received. The first three
 				values are the forces recorded, and the last three are the measured
 				torques.
 		'''
@@ -120,7 +120,7 @@ class Sensor:
 		Request a single measurement from the sensor and return it.
 
 		Returns:
-			list of float: The force values recieved.
+			list of float: The force values received.
 		'''
 		return self.getMeasurement()[:3]
 
@@ -128,7 +128,7 @@ class Sensor:
 		'''Get the most recent force measurement
 
 		Returns:
-			list of float: The force values recieved.
+			list of float: The force values received.
 		'''
 		return self.measurement()[:3]
 
@@ -138,7 +138,7 @@ class Sensor:
 		Request a single measurement from the sensor and return it.
 
 		Returns:
-			list of float: The torque values recieved.
+			list of float: The torque values received.
 		'''
 		return self.getMeasurement()[3:]
 
@@ -146,36 +146,36 @@ class Sensor:
 		'''Get the most recent torque measurement
 
 		Returns:
-			list of float: The torque values recieved.
+			list of float: The torque values received.
 		'''
 		return self.measurement()[3:]
 
 	def startStreaming(self, handler = True):
 		'''Start streaming data continuously
 
-		This function commands the Net F/T box to start sending data continuouly.
+		This function commands the Net F/T box to start sending data continuously.
 		By default this also starts a new thread with a handler to save all data
-		points coming in. These data points can still be accessed with `meansurement`,
+		points coming in. These data points can still be accessed with `measurement`,
 		`force`, and `torque`. This handler can also be disabled and measurements
-		can be recieved manually using the `recieve` function.
+		can be received manually using the `receive` function.
 
 		Args:
 			handler (bool, optional): If True start the handler which saves data to be
 				used with `measurement`, `force`, and `torque`. If False the
-				measurements must be recieved manually. Defaults to True.
+				measurements must be received manually. Defaults to True.
 		'''
 		self.getMeasurements(0)
 		if handler:
 			self.stream = True
-			self.thread = Thread(target = self.recieveHandler)
+			self.thread = Thread(target = self.receiveHandler)
 			self.thread.daemon = True
 			self.thread.start()
 
 	def getMeasurements(self, n):
 		'''Request a given number of samples from the sensor
 
-		This function requestes a given number of samples from the sensor. These
-		measurements must be recieved manually using the `recieve` function.
+		This function requests a given number of samples from the sensor. These
+		measurements must be received manually using the `receive` function.
 
 		Args:
 			n (int): The number of samples to request.
