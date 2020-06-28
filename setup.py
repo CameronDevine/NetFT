@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name = "NetFT",
-    version = "0.6.1",
+    version = "1.0.0",
     packages = find_packages(),
 	author = "Cameron Devine",
 	author_email = "camdev@uw.edu",
