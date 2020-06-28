@@ -3,6 +3,9 @@
 [![Documentation Status](https://readthedocs.org/projects/netft/badge/?version=latest)](https://netft.readthedocs.io/en/latest/?badge=latest)
 [![PyPI](https://img.shields.io/pypi/v/NetFT.svg)](https://pypi.org/project/NetFT/)
 
+## Please Note:
+**This project has moved to [GitHub](https://github.com/CameronDevine/NetFT). All future work will be stored there.**
+
 ## Introduction
 
 This is a Python API for RDT communication with ATI Force/Torque sensors using Net-F/T interface boxes. This library supports requesting single measurements, streaming measurements, and taring the sensor.
