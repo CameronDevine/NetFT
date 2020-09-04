@@ -22,6 +22,7 @@ class Sensor:
 		self.ip = ip
 		self.port = 49152
 		self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+		self.sock.bind((ip, self.port))
 		self.mean = [0] * 6
 		self.stream = False
 
