@@ -22,7 +22,7 @@ class Sensor:
 		self.ip = ip
 		self.port = 49152
 		self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-		self.sock.bind((ip, self.port))
+		self.sock.connect((ip, self.port))
 		self.mean = [0] * 6
 		self.stream = False
 
@@ -38,7 +38,7 @@ class Sensor:
 		'''
 		header = 0x1234
 		message = struct.pack('!HHI', header, command, count)
-		self.sock.sendto(message, (self.ip, self.port))
+		self.sock.send(message)
 
 	def receive(self):
 		'''Receives and unpacks a response from the Net F/T box.
